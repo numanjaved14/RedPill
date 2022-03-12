@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "786728823393",
+    "project_id": "red-pill-eb7ab",
+    "storage_bucket": "red-pill-eb7ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:786728823393:android:720b4d48b3d208c9541820",
+        "android_client_info": {
+          "package_name": "com.example.red_pill"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "786728823393-la0bkoqg3imt2nv2rdkr7t9jashsgnni.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAka-MZeZjMBOcYozYN4bCLKlaMpy3QnJQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "786728823393-la0bkoqg3imt2nv2rdkr7t9jashsgnni.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
