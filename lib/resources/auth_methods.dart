@@ -13,12 +13,33 @@ class AuthMethods {
   Future<model.User> getUserDetails() async {
     User currentUser = _auth.currentUser!;
 
-    DocumentSnapshot snap =
-        await _firebaseFirestore.collection('users').doc().get();
+    // DocumentSnapshot snap =
+    //     await _firebaseFirestore.collection('users').doc().get();
 
-    UserProvider().users = model.User.fromSnap(snap) as dynamic;
+    FirebaseFirestore.instance
+        .collection('users')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        model.User user = model.User(
+          email: doc["email"],
+          uid: _auth.currentUser!.uid,
+          password: doc["password"],
+          firstname: doc["firstname"],
+          secondname: doc["secondname"],
+          vacstatus: doc["vacstatus"],
+        );
+        UserProvider().users.addAll(user.toJson());
+        // print(user.email);
+        // print(doc["email"]);
+      });
+      print(UserProvider().users);
+    });
 
-    return model.User.fromSnap(snap);
+    // UserProvider().users = model.User.fromSnap(snap) as dynamic;
+    // print(snap["email"]);
+    DocumentSnapshot? snap;
+    return model.User.fromSnap(snap!);
   }
 
   Future<String> signUpUser({

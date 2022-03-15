@@ -8,7 +8,7 @@ class UserProvider with ChangeNotifier {
 
   User get getUser => _user!;
 
-  Map<dynamic, String> users = {};
+  Map<dynamic, dynamic> users = {};
 
   get usersData => users;
 

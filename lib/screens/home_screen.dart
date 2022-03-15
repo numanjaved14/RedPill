@@ -23,12 +23,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void initData() async {
     model.User data = await AuthMethods().getUserDetails();
-
-    debugPrint(UserProvider().usersData);
   }
 
   @override
   Widget build(BuildContext context) {
+    var iuse = model.User;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(

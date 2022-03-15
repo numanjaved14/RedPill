@@ -30,7 +30,7 @@ class _SignupScreenState extends State<SignupScreen> {
         secondname: secondNameEditingController.text,
         vacstatus: selectionVac);
 
-    if (res != 'Success') {
+    if (res == 'Success') {
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (context) => const HomeScreen(),

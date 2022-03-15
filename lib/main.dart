@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:red_pill/providers/user_provider.dart';
 import 'package:red_pill/screens/home_screen.dart';
 import 'package:red_pill/screens/login_screen.dart';
-
-import './screens/signup_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,13 +18,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _auth = FirebaseAuth.instance;
-    return MaterialApp(
-      title: 'Red Pill',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [
+        Provider<UserProvider>(
+          create: (_) => UserProvider(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Red Pill',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: _auth.currentUser == null
+            ? const LoginScreen()
+            : const HomeScreen(),
       ),
-      home:
-          _auth.currentUser == null ? const LoginScreen() : const HomeScreen(),
     );
   }
 }
