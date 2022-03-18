@@ -26,6 +26,16 @@ class User {
         'uid': uid,
       };
 
+  // static User fromJson(Map<String, dynamic> json) {
+  //   return User(
+  //     firstname: json['firstname'],
+  //     secondname: json['secondname'],
+  //     email: json['email'],
+  //     password: json['password'],
+  //     vacstatus: json['vacstatus'],
+  //     uid: json['uid'],
+  //   );
+  // }
   static User fromSnap(DocumentSnapshot snap) {
     var snapShot = snap.data() as Map<String, dynamic>;
 

@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     final _auth = FirebaseAuth.instance;
     return MultiProvider(
       providers: [
-        Provider<UserProvider>(
+        ChangeNotifierProvider(
           create: (_) => UserProvider(),
         ),
       ],

@@ -8,9 +8,11 @@ import '../models/user.dart' as model;
 class AuthMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
+  List counted = [0, 0, 1];
+  int nvac = 0, ovac = 0, fvac = 0;
 
   // StorageMethods _storageMethods = StorageMethods();
-  Future<model.User> getUserDetails() async {
+  Future<List> getUserDetails() async {
     User currentUser = _auth.currentUser!;
 
     // DocumentSnapshot snap =
@@ -21,25 +23,52 @@ class AuthMethods {
         .get()
         .then((QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((doc) {
-        model.User user = model.User(
-          email: doc["email"],
-          uid: _auth.currentUser!.uid,
-          password: doc["password"],
-          firstname: doc["firstname"],
-          secondname: doc["secondname"],
-          vacstatus: doc["vacstatus"],
-        );
-        UserProvider().users.addAll(user.toJson());
-        // print(user.email);
+        // model.User user = model.User(
+        //   email: (doc.data() as Map<String, dynamic>)["email"],
+        //   uid: _auth.currentUser!.uid,
+        //   password: (doc.data() as Map<String, dynamic>)["password"],
+        //   firstname: (doc.data() as Map<String, dynamic>)["firstname"],
+        //   secondname: (doc.data() as Map<String, dynamic>)["secondname"],
+        //   vacstatus: (doc.data() as Map<String, dynamic>)["vacstatus"],
+        // );
+        // UserProvider()
+        //     .users
+        //     .addAll(model.User.fromSnap(doc) as Map<String, dynamic>);
+        // print(doc.data());
         // print(doc["email"]);
+        counted = counter(doc.data());
       });
-      print(UserProvider().users);
+      // print(UserProvider().users);
     });
 
     // UserProvider().users = model.User.fromSnap(snap) as dynamic;
     // print(snap["email"]);
-    DocumentSnapshot? snap;
-    return model.User.fromSnap(snap!);
+    // DocumentSnapshot? snap;
+    // return model.User.fromSnap(snap!);
+    print(counted.toString());
+    return counted;
+  }
+
+  List counter(final snap) {
+    if (snap['vacstatus'] == 'Not vaccinated') {
+      nvac++;
+    }
+    if (snap['vacstatus'] == 'One dose') {
+      ovac++;
+    }
+    if (snap['vacstatus'] == 'Fully vaccinated') {
+      fvac++;
+    }
+    print([
+      nvac,
+      ovac,
+      fvac,
+    ]);
+    return [
+      nvac,
+      ovac,
+      fvac,
+    ];
   }
 
   Future<String> signUpUser({

@@ -8,13 +8,13 @@ class UserProvider with ChangeNotifier {
 
   User get getUser => _user!;
 
-  Map<dynamic, dynamic> users = {};
+  Map<String, dynamic> users = {};
 
   get usersData => users;
 
   Future<void> refreshUser() async {
-    User user = await _authMethods.getUserDetails();
-    _user = user;
+    // User user = await _authMethods.getUserDetails();
+    // _user = user;
     notifyListeners();
   }
 }
