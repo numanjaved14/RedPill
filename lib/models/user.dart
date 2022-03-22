@@ -49,3 +49,27 @@ class User {
     );
   }
 }
+
+class RegisterUser {
+  final String firstname;
+  final String secondname;
+  final String vacstatus;
+  final time;
+  final String uid;
+
+  const RegisterUser({
+    required this.firstname,
+    required this.secondname,
+    required this.vacstatus,
+    required this.time,
+    required this.uid,
+  });
+
+  Map<String, dynamic> toJson() => {
+        'firstname': firstname,
+        'secondname': secondname,
+        'vacstatus': vacstatus,
+        'time': time,
+        'uid': uid,
+      };
+}

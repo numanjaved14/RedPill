@@ -11,6 +11,15 @@ class AuthMethods {
   List counted = [0, 0, 1];
   int nvac = 0, ovac = 0, fvac = 0;
 
+  Future<model.User> getSingleDetails() async {
+    User currentUser = _auth.currentUser!;
+
+    DocumentSnapshot snap =
+        await _firebaseFirestore.collection('users').doc(currentUser.uid).get();
+
+    return model.User.fromSnap(snap);
+  }
+
   // StorageMethods _storageMethods = StorageMethods();
   Future<List> getUserDetails() async {
     User currentUser = _auth.currentUser!;
@@ -121,6 +130,38 @@ class AuthMethods {
         res = 'Success';
       } else {
         res = 'Please enter all the Fields';
+      }
+    } catch (error) {
+      res = error.toString();
+    }
+    return res;
+  }
+
+  Future<String> registerUser({
+    required String firstname,
+    required String secondname,
+    required String vacstatus,
+    required String time,
+    required String uid,
+  }) async {
+    String res = 'Some error occured.';
+    try {
+      if (time.isNotEmpty ||
+          firstname.isNotEmpty ||
+          secondname.isNotEmpty ||
+          vacstatus.isNotEmpty) {
+        model.RegisterUser user = model.RegisterUser(
+          firstname: firstname,
+          secondname: secondname,
+          vacstatus: vacstatus,
+          time: time,
+          uid: uid,
+        );
+
+        _firebaseFirestore.collection('register').doc(time).set(
+              user.toJson(),
+            );
+        res = 'Success';
       }
     } catch (error) {
       res = error.toString();

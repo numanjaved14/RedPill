@@ -30,7 +30,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
             ),
             child: ListTile(
               title: Text(widget.snap['firstname'].toString()),
-              subtitle: Text(widget.snap['email'].toString()),
+              subtitle: Text(widget.snap['time'].toString()),
             ),
           )
         : Container();

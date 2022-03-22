@@ -5,6 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:red_pill/providers/user_provider.dart';
 import 'package:red_pill/screens/home_screen.dart';
 import 'package:red_pill/screens/login_screen.dart';
+import 'package:red_pill/screens/register_screen.dart';
+import 'package:red_pill/widgets/stream.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,9 +31,12 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
+        //final
         home: _auth.currentUser == null
             ? const LoginScreen()
             : const HomeScreen(),
+        //test
+        // home: Stream(),
       ),
     );
   }

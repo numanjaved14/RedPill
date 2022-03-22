@@ -3,6 +3,9 @@ import 'package:red_pill/models/user.dart' as model;
 import 'package:red_pill/providers/user_provider.dart';
 import 'package:red_pill/resources/auth_methods.dart';
 import 'package:red_pill/screens/details_screen.dart';
+import 'package:red_pill/screens/register_screen.dart';
+import 'package:red_pill/widgets/drawer.dart';
+import 'package:red_pill/widgets/stream.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -21,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    initData();
+    //initData();
     // TODO: implement initState
     super.initState();
   }
@@ -32,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
         print("{$value}" + "Fawad");
       });
       // setState(() {
-      //   counter = counter;
+      //   counter = counter;git
       // });
       return value.toList();
     });
@@ -47,6 +50,11 @@ class _HomeScreenState extends State<HomeScreen> {
     print(counter);
     var iuse = model.User;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xffd70826),
+        elevation: 0,
+      ),
+      drawer: NavDrawer(),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -121,7 +129,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           child: Text(
-                            counter[2].toString(),
+                            // counter[2].toString(),
+                            'Vaccinated',
                             style: const TextStyle(
                               color: const Color(0xFF36C12C),
                             ),
@@ -136,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           child: Text(
-                            counter[1].toString(),
+                            'One dose',
                             style: const TextStyle(
                               color: const Color(0xFFFF8748),
                             ),
@@ -151,7 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           child: Text(
-                            counter[0].toString(),
+                            'Not Vaccinated',
                             style: const TextStyle(
                               color: Color(0xFFFF4848),
                             ),
@@ -196,6 +205,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const SizedBox(height: 20),
+                  // ElevatedButton(
+                  //     onPressed: () =>
+                  //         Navigator.of(context).push(MaterialPageRoute(
+                  //           builder: (context) => const Stream(),
+                  //         )),
+                  //     child: Text('Register'))
                 ],
               ),
             ),
