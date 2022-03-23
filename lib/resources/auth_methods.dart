@@ -158,7 +158,10 @@ class AuthMethods {
           uid: uid,
         );
 
-        _firebaseFirestore.collection('register').doc(time).set(
+        _firebaseFirestore
+            .collection('register')
+            .doc(_auth.currentUser!.uid)
+            .set(
               user.toJson(),
             );
         res = 'Success';

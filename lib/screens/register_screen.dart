@@ -30,6 +30,59 @@ class _RegisterScreenState extends State<RegisterScreen> {
   //   Provider.of<UserProvider>(context).refreshUser();
   // }
 
+  final time = [
+    '00:00',
+    '00:30',
+    '01:00',
+    '01:30',
+    '02:00',
+    '02:30',
+    '03:00',
+    '03:30',
+    '04:00',
+    '04:30',
+    '05:00',
+    '05:30',
+    '06:00',
+    '06:30',
+    '07:00',
+    '07:30',
+    '08:00',
+    '08:30',
+    '09:00',
+    '09:30',
+    '10:00',
+    '10:30',
+    '11:00',
+    '11:30',
+    '12:00',
+    '12:30',
+    '13:00',
+    '13:30',
+    '14:00',
+    '14:30',
+    '15:00',
+    '15:30',
+    '16:00',
+    '16:30',
+    '17:00',
+    '17:30',
+    '18:00',
+    '18:30',
+    '19:00',
+    '19:30',
+    '20:00',
+    '20:30',
+    '21:00',
+    '21:30',
+    '22:00',
+    '22:30',
+    '23:00',
+    '23:30',
+    '24:00',
+  ];
+  var selectedTime;
+
   @override
   Widget build(BuildContext context) {
     // final model.User user = Provider.of<UserProvider>(context).getUser;
@@ -105,29 +158,55 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
               ),
-              DateTimePicker(
-                type: DateTimePickerType.dateTimeSeparate,
-                dateMask: 'd MMM, yyyy',
-                initialValue: DateTime.now().toString(),
-                firstDate: DateTime(2000),
-                lastDate: DateTime(2100),
-                icon: Icon(Icons.event),
-                dateLabelText: 'Date',
-                timeLabelText: "Hour",
-                selectableDayPredicate: (date) {
-                  // Disable weekend days to select from the calendar
-                  if (date == DateTime.now()) {
-                    return false;
-                  }
-                  return true;
+              DropdownButtonFormField<String>(
+                iconSize: 0,
+                autofocus: false,
+                value: selectedTime,
+                onChanged: (newValue) {
+                  setState(() {
+                    selectedTime = newValue;
+                    checkTime(newValue!);
+                    debugPrint(selectedTime);
+                  });
                 },
-                onChanged: (val) => print(val),
-                validator: (val) {
-                  print(val);
-                  return null;
-                },
-                onSaved: (val) => dateTime = val!,
+                items: time.map((valueItem) {
+                  return DropdownMenuItem(
+                    value: valueItem,
+                    child: Text(valueItem),
+                  );
+                }).toList(),
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.arrow_drop_down),
+                  contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+                  hintText: "Select Time:",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
               ),
+              // DateTimePicker(
+              //   type: DateTimePickerType.dateTimeSeparate,
+              //   dateMask: 'd MMM, yyyy',
+              //   initialValue: DateTime.now().toString(),
+              //   firstDate: DateTime(2000),
+              //   lastDate: DateTime(2100),
+              //   icon: Icon(Icons.event),
+              //   dateLabelText: 'Date',
+              //   timeLabelText: "Hour",
+              //   selectableDayPredicate: (date) {
+              //     // Disable weekend days to select from the calendar
+              //     if (date == DateTime.now()) {
+              //       return false;
+              //     }
+              //     return true;
+              //   },
+              //   onChanged: (val) => print(val),
+              //   validator: (val) {
+              //     print(val);
+              //     return null;
+              //   },
+              //   onSaved: (val) => dateTime = val!,
+              // ),
               Material(
                 elevation: 5,
                 color: Color(0xffd70826),
@@ -167,7 +246,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       firstname: widget.snap['firstname'],
       secondname: widget.snap['secondname'],
       vacstatus: widget.snap['vacstatus'],
-      time: datetime,
+      time: selectedTime,
     );
 
     if (res == 'Success') {
@@ -184,6 +263,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
         SnackBar(content: Text(res)),
       );
     }
+  }
+
+  void checkTime(String time) async {
+    // QuerySnapshot snapshot = await FirebaseFirestore.instance
+    //     .collection('register')
+    //     .doc()
+    //     .collection(time)
+    //     .get();
+    // debugPrint(snapshot.docs.toString());;.
   }
 
   // void check() async {
