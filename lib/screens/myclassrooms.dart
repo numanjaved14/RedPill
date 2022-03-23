@@ -68,6 +68,18 @@ class _MyClassRoomsState extends State<MyClassRooms> {
                                         topLeft: Radius.circular(20),
                                         topRight: Radius.circular(20),
                                         bottomRight: Radius.circular(20))),
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Text('ClassroomS505 \nType for Vacinated \n Students',style: TextStyle(color: Colors.white,fontSize: 20),),
+                                             Row(
+                                               mainAxisAlignment: MainAxisAlignment.end,
+                                               children: [
+                                                 Image.asset('assets/class1.jpg',height: 80,),
+                                               ],
+                                             )
+                                          ],
+                                        ),
                               ),
                             ),
                             SizedBox(
@@ -91,6 +103,18 @@ class _MyClassRoomsState extends State<MyClassRooms> {
                                         topLeft: Radius.circular(20),
                                         topRight: Radius.circular(20),
                                         bottomRight: Radius.circular(20))),
+                                        child:  Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Text('ClassroomS505 \nType for One Dose \n Students',style: TextStyle(color: Colors.white,fontSize: 20),),
+                                             Row(
+                                               mainAxisAlignment: MainAxisAlignment.end,
+                                               children: [
+                                                 Image.asset('assets/class2.jpg',height: 80,),
+                                               ],
+                                             )
+                                          ],
+                                        ),
                               ),
                             ),
                             SizedBox(
@@ -114,6 +138,19 @@ class _MyClassRoomsState extends State<MyClassRooms> {
                                         topLeft: Radius.circular(20),
                                         topRight: Radius.circular(20),
                                         bottomRight: Radius.circular(20))),
+                                        child:  Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Text('ClassroomS505 \nType for Non Vacinated \n Students',style: TextStyle(color: Colors.white,fontSize: 20),),
+                                             Row(
+                                               mainAxisAlignment: MainAxisAlignment.end,
+                                               children: [
+                                                 Image.asset('assets/class3.jpg',height: 80,),
+                                               ],
+                                             )
+                                          ],
+                                        ),
+                                        
                               ),
                             )
                           ],

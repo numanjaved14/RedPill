@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:red_pill/screens/home_screen.dart';
 import 'package:red_pill/screens/login_screen.dart';
+import 'package:red_pill/screens/myaccountspage.dart';
 import 'package:red_pill/screens/myclassrooms.dart';
 import '../widgets/stream.dart';
 
@@ -86,7 +87,7 @@ class NavDrawer extends StatelessWidget {
                               leading: const Icon(Icons.person,color: Colors.white),
                               title: const Text('My Account',style: TextStyle(color: Colors.white,fontWeight: FontWeight.w300,fontSize: 18,),),
                               onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const HomeScreen(),
+                                builder: (context) =>  MyAccountsPage(),
                               )),
                             ),
                             

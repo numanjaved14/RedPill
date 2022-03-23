@@ -1,6 +1,7 @@
+
 import 'package:flutter/material.dart';
 
-// import 'constant.dart';
+import 'constant.dart';
 
 class Counter extends StatelessWidget {
   final String number;
@@ -44,14 +45,7 @@ class Counter extends StatelessWidget {
             color: color,
           ),
         ),
-        Text(
-          title,
-          style: const TextStyle(
-            fontSize: 18,
-            color: Color(0xFF303030),
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        Text(title, style: kSubTextStyle),
       ],
     );
   }
