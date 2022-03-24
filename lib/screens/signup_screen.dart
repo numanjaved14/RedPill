@@ -33,7 +33,7 @@ class _SignupScreenState extends State<SignupScreen> {
     if (res == 'Success') {
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => const HomeScreen(),
+          builder: (context) => const HomePage(),
         ),
       );
 

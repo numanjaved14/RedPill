@@ -80,7 +80,7 @@ class NavDrawer extends StatelessWidget {
                               leading: const Icon(Icons.home,color: Colors.white),
                               title: const Text('Home',style: TextStyle(color: Colors.white,fontWeight: FontWeight.w300,fontSize: 18,),),
                               onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const HomeScreen(),
+                                builder: (context) => const HomePage(),
                               )),
                             ),
                             ListTile(

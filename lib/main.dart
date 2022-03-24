@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         //final
         home: _auth.currentUser == null
             ? const LoginScreen()
-            : const HomeScreen(),
+            : const HomePage(),
         //test
         // home: Stream(),
       ),
