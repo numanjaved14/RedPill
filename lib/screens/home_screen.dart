@@ -130,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           child: Text(
                             // counter[2].toString(),
-                            'Vaccinated',
+                            '0',
                             style: const TextStyle(
                               color: const Color(0xFF36C12C),
                             ),
@@ -145,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           child: Text(
-                            'One dose',
+                            '1',
                             style: const TextStyle(
                               color: const Color(0xFFFF8748),
                             ),
@@ -160,7 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           child: Text(
-                            'Not Vaccinated',
+                            '3',
                             style: const TextStyle(
                               color: Color(0xFFFF4848),
                             ),
