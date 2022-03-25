@@ -21,10 +21,15 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Color(0xffd70826),
+      ),
       drawer: NavDrawer(),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
+            
             ClipPath(
               clipper: MyClipper(),
               child: Container(
