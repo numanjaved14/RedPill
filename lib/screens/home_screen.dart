@@ -1,21 +1,24 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:red_pill/resources/auth_methods.dart';
 import 'package:red_pill/widgets/constant.dart';
 import 'package:red_pill/widgets/counter.dart';
 import 'package:red_pill/widgets/drawer.dart';
 
-
-class HomePage extends StatefulWidget  {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin<HomePage> {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin<HomePage> {
   Map? worldData;
 
   @override
@@ -29,7 +32,6 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            
             ClipPath(
               clipper: MyClipper(),
               child: Container(
@@ -67,39 +69,42 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                     ],
                   ),
                   const SizedBox(height: 20),
-                  if (worldData == null) const CircularProgressIndicator() else Container(
-                    padding: const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          offset: const Offset(0, 4),
-                          blurRadius: 30,
-                          color: kShadowColor,
-                        ),
-                      ],
+                  if (worldData == null)
+                    const CircularProgressIndicator()
+                  else
+                    Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            offset: const Offset(0, 4),
+                            blurRadius: 30,
+                            color: kShadowColor,
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Counter(
+                              number: roundNumber(worldData?['active']),
+                              color: kInfectedColor,
+                              title: "Infected"),
+                          Counter(
+                            color: kDeathColor,
+                            number: roundNumber(worldData?['deaths']),
+                            title: "Deaths",
+                          ),
+                          Counter(
+                            color: kRecovercolor,
+                            number: roundNumber(worldData?['todayRecovered']),
+                            title: "Recovered",
+                          ),
+                        ],
+                      ),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                          Counter(number: roundNumber(worldData?['active']), color: kInfectedColor, title: "Infected"),
-
-
-                       
-                        Counter(
-                          color: kDeathColor,
-                          number: roundNumber(worldData?['deaths']),
-                          title: "Deaths",
-                        ),
-                        Counter(
-                          color: kRecovercolor,
-                          number: roundNumber(worldData?['todayRecovered']),
-                          title: "Recovered",
-                        ),
-                      ],
-                    ),
-                  ),
                   const SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -166,6 +171,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   @override
   void initState() {
     fetchWorldWideData();
+    // var snap = AuthMethods().userData;
     super.initState();
   }
 }
@@ -189,4 +195,3 @@ class MyClipper extends CustomClipper<Path> {
     return false;
   }
 }
-

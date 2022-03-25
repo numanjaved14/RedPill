@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:red_pill/providers/user_provider.dart';
 import '../models/user.dart' as model;
 
@@ -170,5 +171,17 @@ class AuthMethods {
       res = error.toString();
     }
     return res;
+  }
+
+  Future<DocumentSnapshot<Map<String, dynamic>>> userData() async {
+    DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
+        .instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get();
+
+    debugPrint(snapshot['email']);
+
+    return snapshot;
   }
 }
